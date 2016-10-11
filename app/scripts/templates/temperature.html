@@ -1,0 +1,26 @@
+<div id="temp-wrapper" class="ng-cloak">
+  <header>
+    <h1>Temperatures</h1>
+  </header>
+  <section id="main">
+    <form ng-submit="tc.create()">
+      <input
+        id="item-input"
+        type="text"
+        placeholder="Whats the temperature?"
+        ng-model="tc.temp"
+        autofocus />
+    </form>
+    <ul id="temp-list">
+      <li
+        class="todo-item"
+        ng-repeat="temp in tc.temperatures track by $index">
+        <div class="view">
+          <label>{{ temp }}</label>
+        </div>
+      </li>
+    </ul>
+    <button type="button" ng-click="tc.median()">Get Median</button>
+    <span ng-if="tc.medianVal">Median of temperatures: {{ tc.medianVal }}</span>
+  </section>
+</div>

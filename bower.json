@@ -1,0 +1,20 @@
+{
+  "name": "project-todos",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "fontawesome#^4.6.1",
+    "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "animate.css": "daneden#^3.5.1",
+    "bootstrap-sass": "^3.3.6"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "scss/font-awesome.scss",
+        "fonts/*"
+      ]
+    }
+  }
+}

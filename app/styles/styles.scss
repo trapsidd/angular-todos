@@ -1,0 +1,301 @@
+// bower:scss
+@import "bower_components/font-awesome/scss/font-awesome.scss";
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e9e9e9;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+.ng-cloak {
+  display: none;
+}
+
+#route {
+  position: relative;
+  text-align: left;
+}
+
+.page-holder {
+  position: relative;
+  display: block;
+}
+
+.page {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.page.ng-enter {
+  animation: fadeInLeft 300ms ease-in-out;
+}
+.page.ng-leave {
+  animation: fadeOutRight 300ms ease-in-out;
+}
+
+
+#app {
+  /*width: 800px;*/
+  /*margin: 20px auto 0;*/
+  #todos-wrapper,
+  #temp-wrapper,
+  #github-wrapper{
+    width: 100%;
+    float: left;
+    h1 {
+      margin: 40px 0;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 100;
+    }
+  }
+}
+
+
+#main {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  border: 1px #e9e9e9 solid;
+}
+
+#item-input,
+#user-input {
+  width: 100%;
+  margin: 0;
+  padding: 16px 20px;
+  border: none;
+  border-bottom: 1px #ccc solid;
+  outline: 0;
+  font-size: inherit;
+}
+
+#todo-list,
+#temp-list {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+}
+
+
+.todo-item{
+  height: 46px;
+  display: block;
+  background-color: white;
+  border-bottom: 1px #e9e9e9 solid;
+  position: relative;
+  &:nth-child(odd) {
+    background-color: #fafafa;
+  }
+
+  .view, .edit {
+    font-size: 13px;
+  }
+  .edit {
+    width: 100%;
+    padding: 12px 12px 12px 20px;
+    border: none;
+    outline: none;
+    display: none;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .view {
+    position: relative;
+    font-size: inherit;
+    .toggle,
+    .remove {
+      width: 30px;
+      position: absolute;
+      cursor: pointer;
+      font-size: inherit;
+      z-index: 100;
+      top: 14.5px;
+      font-family: 'FontAwesome';
+      font-size: inherit;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .toggle {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      outline: none;
+      border: none;
+      left: 15px;
+      &:before {
+        content: '\f05d';
+      }
+      &:checked:before {
+        content: '\f058';  
+      }
+    }
+    .remove {
+      margin: 0;
+      position: absolute;
+      background: none;
+      border: none;
+      outline: none;
+      top: 12.5px;
+      right: 15px;
+      &:before {
+        content: '\f1f8';
+      }
+    }
+    label {
+      margin: 0;
+      padding: 12px 40px;
+      display: block;
+      font-family: inherit;
+      font-weight: normal;
+      font-size: inherit;
+      z-index: 99;
+      transition: 300ms all linear;
+    }
+  }
+  &.active {
+    .view {
+      display: none;
+    }
+    .edit {
+      padding-left: 40px;
+      background-color: #ffa;
+      display: block;
+    }
+  }
+  &.complete {
+    label {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+  }
+}
+
+
+.todo-item {
+  &.ng-enter {
+    animation: enter 300ms;
+  }
+
+  &.ng-leave {
+    animation: leave  300ms;
+  }
+}
+
+@keyframes enter {
+  from {
+    top: -40px;
+    opacity: 0;
+    max-height: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+    max-height: 46px;
+  }
+}
+
+@keyframes leave {
+  from {
+    top: 0;
+    opacity: 1;
+    max-height: 46px;
+  }
+
+  to {
+    top: -40px;
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.user-info,
+.user-repos {
+  padding: 18px 24px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+
+.user-content-holder {
+  position: relative;
+  display: block;
+}
+
+.user-profile-image,
+.user-profile-info {
+  float: left;
+}
+
+.user-profile-image {
+  width: 90px;
+  height: 90px;
+  padding-right: 20px;
+  overflow: hidden !important;
+  img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    border: 6px #ccc solid;
+    box-shadow: 0 1px 1px #aaa;
+    border-radius: 50%;
+    transition: all 300ms linear;
+  }
+}
+
+.user-profile-info {
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+.user,
+.loader {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.user {
+  &.ng-enter {
+    animation: fadeIn 300ms ease-in-out;
+  }
+  &.ng-leave {
+    animation: fadeOut 300ms ease-in-out;
+  }
+}
+
+.loader {
+  padding-top: 100px;
+  &.ng-enter {
+    animation: fadeIn 300ms ease-in-out;
+  }
+  &.ng-leave {
+    animation: fadeOut 300ms ease-in-out;
+  }
+}
